@@ -75,7 +75,7 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Loaded scenario: "${sample.title}"'),
-        backgroundColor: const Color(0xFF32050E),
+        backgroundColor: const Color(0xFF0A2415),
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -161,7 +161,7 @@ class _AnalyzerScreenState extends State<AnalyzerScreen> {
             ),
           ],
         ),
-        backgroundColor: const Color(0xFF22040B),
+        backgroundColor: const Color(0xFF0A2415),
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

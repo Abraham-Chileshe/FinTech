@@ -26,7 +26,7 @@ class HomeFixedTopNav extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: isDark ? const Color(0xFF161017) : Colors.white,
+      backgroundColor: isDark ? AppTheme.surfaceDark : Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -44,10 +44,10 @@ class HomeFixedTopNav extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: isDark ? const Color(0xFF2D1520) : const Color(0xFFFDE8EC),
+                        color: isDark ? AppTheme.headerCardBg : const Color(0xFFE8EEF3),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.person, color: AppTheme.absaCoral, size: 28),
+                      child: const Icon(Icons.person, color: AppTheme.primaryGreen, size: 28),
                     ),
                     const SizedBox(width: 14),
                     Expanded(
@@ -75,18 +75,18 @@ class HomeFixedTopNav extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 18),
-                Divider(color: isDark ? const Color(0xFF2E1C28) : const Color(0xFFEAE2E8)),
+                Divider(color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: isDark ? AppTheme.absaRed.withValues(alpha: 0.15) : const Color(0xFFFEE2E2),
+                      color: isDark ? AppTheme.primaryGreen.withValues(alpha: 0.15) : const Color(0xFFD1FAE5),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Icon(
                       isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-                      color: AppTheme.absaRed,
+                      color: AppTheme.primaryGreen,
                       size: 20,
                     ),
                   ),
@@ -101,13 +101,13 @@ class HomeFixedTopNav extends StatelessWidget {
                   subtitle: Text(
                     isDark ? 'Switch to bright appearance' : 'Switch to dark appearance',
                     style: TextStyle(
-                      color: isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted,
+                      color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                       fontSize: 12,
                     ),
                   ),
                   trailing: Switch(
                     value: !isDark,
-                    activeThumbColor: AppTheme.absaRed,
+                    activeThumbColor: AppTheme.primaryGreen,
                     onChanged: (val) {
                       ThemeService().toggleTheme();
                       Navigator.pop(context);
@@ -128,7 +128,7 @@ class HomeFixedTopNav extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF8B0B24) : const Color(0xFFDC0032),
+        color: AppTheme.headerNavColor(isDark),
         boxShadow: isScrolled
             ? [
                 BoxShadow(
@@ -154,12 +154,16 @@ class HomeFixedTopNav extends StatelessWidget {
               width: 38,
               height: 38,
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF351520) : Colors.white.withValues(alpha: 0.22),
+                color: isDark ? AppTheme.headerCardBg : Colors.white.withValues(alpha: 0.22),
                 shape: BoxShape.circle,
+                border: Border.all(
+                  color: isDark ? AppTheme.headerCardBorder : Colors.transparent,
+                  width: 1,
+                ),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.person,
-                color: isDark ? const Color(0xFFE5BFC7) : Colors.white,
+                color: Colors.white,
                 size: 22,
               ),
             ),
@@ -172,10 +176,10 @@ class HomeFixedTopNav extends StatelessWidget {
               height: 44,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF220B13) : Colors.black.withValues(alpha: 0.16),
+                color: isDark ? AppTheme.headerSearchBg : Colors.black.withValues(alpha: 0.16),
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(
-                  color: isDark ? const Color(0xFF5E1726) : Colors.white.withValues(alpha: 0.35),
+                  color: isDark ? AppTheme.headerSearchBorder : Colors.white.withValues(alpha: 0.35),
                   width: 1.4,
                 ),
                 boxShadow: [
@@ -196,12 +200,12 @@ class HomeFixedTopNav extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   hintText: 'Scan SMS, phone number or URL...',
                   hintStyle: GoogleFonts.inter(
-                    color: isDark ? const Color(0xFFB58E97) : Colors.white.withValues(alpha: 0.85),
+                    color: isDark ? AppTheme.headerTextMuted : Colors.white.withValues(alpha: 0.85),
                     fontSize: 13,
                   ),
-                  suffixIcon: Icon(
+                  suffixIcon: const Icon(
                     Icons.search_rounded,
-                    color: isDark ? const Color(0xFFDCA5B0) : Colors.white,
+                    color: Colors.white,
                     size: 21,
                   ),
                   border: OutlineInputBorder(
@@ -214,8 +218,8 @@ class HomeFixedTopNav extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(
-                      color: isDark ? AppTheme.absaCoral : Colors.white,
+                    borderSide: const BorderSide(
+                      color: AppTheme.primaryGreen,
                       width: 1.5,
                     ),
                   ),

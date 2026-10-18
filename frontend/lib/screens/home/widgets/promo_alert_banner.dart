@@ -18,10 +18,10 @@ class PromoAlertBanner extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF19121A) : Colors.white,
+        color: isDark ? AppTheme.surfaceDark : Colors.white,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isDark ? const Color(0xFF2E1C28) : const Color(0xFFE9E0E6),
+          color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
           width: 1,
         ),
         boxShadow: isDark
@@ -45,7 +45,7 @@ class PromoAlertBanner extends StatelessWidget {
               child: Icon(
                 Icons.close_rounded,
                 size: 18,
-                color: isDark ? const Color(0xFF8E7D8A) : AppTheme.textDarkSubtle,
+                color: isDark ? AppTheme.textSubtle : AppTheme.textDarkSubtle,
               ),
             ),
           ),
@@ -78,7 +78,7 @@ class PromoAlertBanner extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 12.5,
                           fontWeight: FontWeight.w400,
-                          color: isDark ? const Color(0xFFAFA0AD) : AppTheme.textDarkMuted,
+                          color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                           height: 1.3,
                         ),
                       ),
@@ -89,11 +89,11 @@ class PromoAlertBanner extends StatelessWidget {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.warning_amber_rounded, color: AppTheme.absaCoral, size: 26),
+                  const Icon(Icons.shield_rounded, color: AppTheme.primaryGreen, size: 26),
                   const SizedBox(height: 6),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.absaRed,
+                      backgroundColor: AppTheme.primaryGreen,
                       foregroundColor: Colors.white,
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),

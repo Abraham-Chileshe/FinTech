@@ -17,7 +17,7 @@ class ResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? AppTheme.backgroundDark : AppTheme.backgroundLight,
       appBar: AppBar(
-        backgroundColor: isDark ? const Color(0xFF8B0B24) : const Color(0xFFDC0032),
+        backgroundColor: AppTheme.headerNavColor(isDark),
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           'Analysis Assessment',

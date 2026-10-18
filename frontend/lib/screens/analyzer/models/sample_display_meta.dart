@@ -232,17 +232,17 @@ class SampleDisplayMeta {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF381024) : const Color(0xFFFCE7F3),
+            color: isDark ? const Color(0xFF38101C) : const Color(0xFFFEE2E2),
             shape: BoxShape.circle,
             border: Border.all(
-              color: AppTheme.absaCoral.withValues(alpha: 0.3),
+              color: AppTheme.riskHigh.withValues(alpha: 0.35),
               width: 1,
             ),
           ),
           child: const Center(
             child: Icon(
               Icons.swap_horiz_rounded,
-              color: AppTheme.absaCoral,
+              color: AppTheme.riskHigh,
               size: 22,
             ),
           ),
@@ -256,14 +256,14 @@ class SampleDisplayMeta {
             color: isDark ? const Color(0xFF380C16) : const Color(0xFFFDE8EC),
             shape: BoxShape.circle,
             border: Border.all(
-              color: AppTheme.absaRed.withValues(alpha: 0.3),
+              color: AppTheme.riskHigh.withValues(alpha: 0.35),
               width: 1,
             ),
           ),
           child: const Center(
             child: Icon(
               Icons.lock_outline_rounded,
-              color: AppTheme.absaRed,
+              color: AppTheme.riskHigh,
               size: 20,
             ),
           ),

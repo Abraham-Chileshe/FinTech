@@ -231,7 +231,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('Chat history reset'),
-        backgroundColor: const Color(0xFF380712),
+        backgroundColor: const Color(0xFF0D2818),
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -245,7 +245,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
       SnackBar(
         content: Row(
           children: [
-            const Icon(Icons.mic_rounded, color: AppTheme.absaCoral, size: 20),
+            const Icon(Icons.mic_rounded, color: AppTheme.mintAccent, size: 20),
             const SizedBox(width: 10),
             Text(
               'Listening... (Asking "Tell me more about the Money alert")',
@@ -253,7 +253,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
             ),
           ],
         ),
-        backgroundColor: const Color(0xFF32050E),
+        backgroundColor: const Color(0xFF0A2415),
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -271,12 +271,12 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final Color bgColor = isDark ? const Color(0xFF12060A) : const Color(0xFFF9F5F7);
-    final Color topBarColor = isDark ? const Color(0xFF1E0B12) : Colors.white;
-    final Color inputBarColor = isDark ? const Color(0xFF1E0B12) : Colors.white;
-    final Color primaryTextColor = isDark ? Colors.white : const Color(0xFF1E1015);
-    final Color secondaryTextColor = isDark ? const Color(0xFFD6BAC5) : const Color(0xFF6B5861);
-    final Color borderColor = isDark ? const Color(0xFF38141F) : const Color(0xFFEEDAE2);
+    final Color bgColor = isDark ? AppTheme.backgroundDark : AppTheme.backgroundLight;
+    final Color topBarColor = isDark ? AppTheme.surfaceDark : Colors.white;
+    final Color inputBarColor = isDark ? AppTheme.surfaceDark : Colors.white;
+    final Color primaryTextColor = isDark ? AppTheme.textLight : AppTheme.textDark;
+    final Color secondaryTextColor = isDark ? AppTheme.textMuted : AppTheme.textDarkMuted;
+    final Color borderColor = isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -303,14 +303,14 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                     shape: BoxShape.circle,
                     gradient: const RadialGradient(
                       colors: [
-                        Color(0xFFFF4D6D),
-                        Color(0xFFDC0032),
-                        Color(0xFF8B0B24),
+                        Color(0xFF00FF88),
+                        Color(0xFF00C853),
+                        Color(0xFF064E3B),
                       ],
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppTheme.absaRed.withValues(alpha: 0.35),
+                        color: AppTheme.primaryGreen.withValues(alpha: 0.35),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),
@@ -393,13 +393,13 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF18070E) : const Color(0xFFF7EFF3),
+              color: isDark ? AppTheme.headerCardBg : const Color(0xFFE8EEF3),
               border: Border(bottom: BorderSide(color: borderColor, width: 0.8)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.shield_outlined, size: 14, color: AppTheme.absaRed),
+                const Icon(Icons.shield_outlined, size: 14, color: AppTheme.primaryGreen),
                 const SizedBox(width: 6),
                 Flexible(
                   child: Text(
@@ -407,7 +407,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                     style: GoogleFonts.inter(
                       fontSize: 11.5,
                       fontWeight: FontWeight.w500,
-                      color: isDark ? const Color(0xFFE2C4D0) : const Color(0xFF6B4856),
+                      color: isDark ? AppTheme.headerTextMuted : AppTheme.textDarkMuted,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -471,11 +471,11 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: isDark ? const Color(0xFF280E17) : const Color(0xFFF6EBF0),
+                                color: isDark ? const Color(0xFF132E20) : const Color(0xFFE8F6EF),
                               ),
                               child: const Icon(
                                 Icons.mic_rounded,
-                                color: AppTheme.absaRed,
+                                color: AppTheme.primaryGreen,
                                 size: 21,
                               ),
                             ),
@@ -487,10 +487,10 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                              color: isDark ? const Color(0xFF240E16) : const Color(0xFFF7EFF3),
+                              color: isDark ? const Color(0xFF11261B) : const Color(0xFFEBF7F1),
                               borderRadius: BorderRadius.circular(24),
                               border: Border.all(
-                                color: isDark ? const Color(0xFF3E1624) : const Color(0xFFE8D4DD),
+                                color: isDark ? const Color(0xFF1B3D2C) : const Color(0xFFCCEADA),
                               ),
                             ),
                             child: TextField(
@@ -532,7 +532,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                                     height: 42,
                                     decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Color(0xFF8B0B24),
+                                      color: Color(0xFF064E3B),
                                     ),
                                     child: const Center(
                                       child: SizedBox(
@@ -556,15 +556,15 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                                       shape: BoxShape.circle,
                                       gradient: const LinearGradient(
                                         colors: [
-                                          Color(0xFFDC0032),
-                                          Color(0xFF9E0827),
+                                          Color(0xFF00E676),
+                                          Color(0xFF00C853),
                                         ],
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
                                       ),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: AppTheme.absaRed.withValues(alpha: 0.35),
+                                          color: AppTheme.primaryGreen.withValues(alpha: 0.35),
                                           blurRadius: 8,
                                           offset: const Offset(0, 2),
                                         ),
@@ -607,8 +607,8 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: [
-                    Color(0xFFDC0032), // Signature Absa Red
-                    Color(0xFFB30026), // Crimson
+                    Color(0xFF00C853), // Signature Fintech Emerald Green
+                    Color(0xFF065F46), // Executive Pine
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -621,7 +621,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.absaRed.withValues(alpha: 0.25),
+                    color: AppTheme.primaryGreen.withValues(alpha: 0.25),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -649,10 +649,10 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
       return _buildThinkingBubble(isDark);
     }
 
-    final Color bubbleBg = isDark ? const Color(0xFF1E0A12) : Colors.white;
-    final Color bubbleBorder = isDark ? const Color(0xFF381420) : const Color(0xFFEEDAE2);
-    final Color textColor = isDark ? const Color(0xFFE2E8F0) : const Color(0xFF2D1822);
-    final Color subTextColor = isDark ? const Color(0xFFB898A6) : const Color(0xFF7A646E);
+    final Color bubbleBg = isDark ? AppTheme.surfaceDark : Colors.white;
+    final Color bubbleBorder = isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight;
+    final Color textColor = isDark ? AppTheme.textLight : AppTheme.textDark;
+    final Color subTextColor = isDark ? AppTheme.textMuted : AppTheme.textDarkMuted;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
@@ -667,11 +667,11 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: const RadialGradient(
-                colors: [Color(0xFFDC0032), Color(0xFF8B0B24)],
+                colors: [Color(0xFF00C853), Color(0xFF064E3B)],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppTheme.absaRed.withValues(alpha: 0.25),
+                  color: AppTheme.primaryGreen.withValues(alpha: 0.25),
                   blurRadius: 6,
                   offset: const Offset(0, 2),
                 ),
@@ -821,16 +821,16 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                       runSpacing: 6,
                       children: message.suggestedFollowups.map((followup) {
                         return ActionChip(
-                          backgroundColor: isDark ? const Color(0xFF2D101C) : const Color(0xFFF6ECF1),
+                          backgroundColor: isDark ? const Color(0xFF132E20) : const Color(0xFFE8F6EF),
                           side: BorderSide(
-                            color: isDark ? const Color(0xFF4C1B2E) : const Color(0xFFE4CFDA),
+                            color: isDark ? const Color(0xFF1D4530) : const Color(0xFFCCEADA),
                           ),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                           label: Text(
                             followup,
                             style: GoogleFonts.inter(
                               fontSize: 11.5,
-                              color: isDark ? const Color(0xFFF3E5EB) : const Color(0xFF3E1D2A),
+                              color: isDark ? const Color(0xFFE0F4EA) : const Color(0xFF103E27),
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -850,8 +850,8 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
 
   // Thinking / Waiting Indicator Bubble
   Widget _buildThinkingBubble(bool isDark) {
-    final Color bubbleBg = isDark ? const Color(0xFF1E0A12) : Colors.white;
-    final Color bubbleBorder = isDark ? const Color(0xFF381420) : const Color(0xFFEEDAE2);
+    final Color bubbleBg = isDark ? AppTheme.surfaceDark : Colors.white;
+    final Color bubbleBorder = isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
@@ -864,7 +864,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
             margin: const EdgeInsets.only(top: 2, right: 10),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Color(0xFF8B0B24),
+              color: Color(0xFF064E3B),
             ),
             child: const Center(
               child: Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 16),
@@ -892,7 +892,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                     height: 10,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.absaRed,
+                      color: AppTheme.primaryGreen,
                     ),
                   ),
                 ),
@@ -902,7 +902,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
                   style: GoogleFonts.inter(
                     fontSize: 13,
                     fontStyle: FontStyle.italic,
-                    color: isDark ? const Color(0xFFB898A6) : const Color(0xFF7A646E),
+                    color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                   ),
                 ),
               ],
@@ -934,9 +934,9 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
         itemBuilder: (context, index) {
           final prompt = prompts[index];
           return ActionChip(
-            backgroundColor: isDark ? const Color(0xFF260D17) : const Color(0xFFF3E7ED),
+            backgroundColor: isDark ? const Color(0xFF132E20) : const Color(0xFFE8F6EF),
             side: BorderSide(
-              color: isDark ? const Color(0xFF421727) : const Color(0xFFE2CAD6),
+              color: isDark ? const Color(0xFF1D4530) : const Color(0xFFCCEADA),
             ),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             label: Text(
@@ -944,7 +944,7 @@ class _AssistantScreenState extends State<AssistantScreen> with TickerProviderSt
               style: GoogleFonts.inter(
                 fontSize: 11.5,
                 fontWeight: FontWeight.w500,
-                color: isDark ? const Color(0xFFEEDAE2) : const Color(0xFF4C2132),
+                color: isDark ? const Color(0xFFE0F4EA) : const Color(0xFF103E27),
               ),
             ),
             onPressed: () => _sendMessage(prompt),

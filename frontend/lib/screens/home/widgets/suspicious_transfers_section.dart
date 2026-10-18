@@ -76,7 +76,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 13.5,
                   fontWeight: FontWeight.w500,
-                  color: AppTheme.absaCoral,
+                  color: AppTheme.primaryGreen,
                 ),
               ),
             ),
@@ -89,7 +89,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Absa Red "Scan SMS" circle button
+              // Signature Green "Scan SMS" circle button (matches "Новый перевод" circle in screenshot)
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -105,17 +105,17 @@ class SuspiciousTransfersSection extends StatelessWidget {
                         width: 58,
                         height: 58,
                         decoration: BoxDecoration(
-                          color: AppTheme.absaRed,
+                          color: AppTheme.primaryGreen,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: AppTheme.absaRed.withValues(alpha: 0.35),
+                              color: AppTheme.primaryGreen.withValues(alpha: 0.35),
                               blurRadius: 10,
                               spreadRadius: 1,
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.sms_rounded, color: Colors.white, size: 24),
+                        child: const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 24),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -124,7 +124,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
-                          color: AppTheme.absaCoral,
+                          color: AppTheme.primaryGreen,
                           height: 1.25,
                         ),
                       ),
@@ -135,7 +135,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
 
               const SizedBox(width: 8),
 
-              // Threat Scenario Contacts with Absa Red badges
+              // Threat Scenario Contacts with alert badges (matches contact avatars with orange badges in screenshot)
               ...threatSamples.map((item) {
                 final sample = item['sample'] as SampleMessage;
                 return Padding(
@@ -153,7 +153,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
                                 width: 58,
                                 height: 58,
                                 decoration: BoxDecoration(
-                                  color: isDark ? const Color(0xFF271C26) : const Color(0xFFF1EAEF),
+                                  color: isDark ? AppTheme.avatarDark : AppTheme.avatarLight,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Center(
@@ -162,7 +162,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
                                     style: GoogleFonts.inter(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
-                                      color: isDark ? const Color(0xFFE5BFC7) : const Color(0xFF5E2738),
+                                      color: isDark ? const Color(0xFFDCE3EA) : const Color(0xFF1E293B),
                                     ),
                                   ),
                                 ),
@@ -174,7 +174,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
                                   width: 18,
                                   height: 18,
                                   decoration: const BoxDecoration(
-                                    color: AppTheme.absaRed,
+                                    color: AppTheme.accentOrange,
                                     shape: BoxShape.circle,
                                   ),
                                   child: Center(
@@ -199,7 +199,7 @@ class SuspiciousTransfersSection extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.inter(
                               fontSize: 11,
-                              color: isDark ? const Color(0xFFD3C2D0) : AppTheme.textDarkMuted,
+                              color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                               height: 1.25,
                             ),
                           ),

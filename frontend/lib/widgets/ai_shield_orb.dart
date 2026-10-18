@@ -56,29 +56,36 @@ class _AiShieldOrbState extends State<AiShieldOrb> with SingleTickerProviderStat
           final pulse = widget.isAnalyzing ? 1.0 + 0.08 * math.sin(_controller.value * math.pi * 4) : _pulseAnimation.value;
           final glowVal = _glowAnimation.value;
           final currentSize = widget.size * pulse;
+          final isMini = widget.size < 50;
+          final extraBox = isMini ? 12.0 : 80.0;
+          final extraContainer = isMini ? 6.0 : 60.0;
+          final blur1 = isMini ? 6.0 * glowVal : 45.0 * glowVal;
+          final spread1 = isMini ? 1.0 * glowVal : 10.0 * glowVal;
+          final blur2 = isMini ? 10.0 * glowVal : 70.0 * glowVal;
+          final spread2 = isMini ? 2.0 * glowVal : 15.0 * glowVal;
 
           return SizedBox(
-            width: currentSize + 80,
-            height: currentSize + 80,
+            width: currentSize + extraBox,
+            height: currentSize + extraBox,
             child: Stack(
               alignment: Alignment.center,
               children: [
-                // Outer ambient aura glow (Absa Red & Sunset Coral)
+                // Outer ambient aura glow (Emerald Green & Neon Mint)
                 Container(
-                  width: currentSize + 60,
-                  height: currentSize + 60,
+                  width: currentSize + extraContainer,
+                  height: currentSize + extraContainer,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFFDC0032).withValues(alpha: 0.3 * glowVal),
-                        blurRadius: 45 * glowVal,
-                        spreadRadius: 10 * glowVal,
+                        color: const Color(0xFF22C55E).withValues(alpha: 0.35 * glowVal),
+                        blurRadius: blur1,
+                        spreadRadius: spread1,
                       ),
                       BoxShadow(
-                        color: const Color(0xFFFF385C).withValues(alpha: 0.22 * glowVal),
-                        blurRadius: 70 * glowVal,
-                        spreadRadius: 15 * glowVal,
+                        color: const Color(0xFF34D399).withValues(alpha: 0.25 * glowVal),
+                        blurRadius: blur2,
+                        spreadRadius: spread2,
                       ),
                     ],
                   ),
@@ -92,13 +99,13 @@ class _AiShieldOrbState extends State<AiShieldOrb> with SingleTickerProviderStat
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: const Color(0xFFDC0032).withValues(alpha: 0.45 * (1 - _controller.value)),
+                        color: const Color(0xFF00E676).withValues(alpha: 0.45 * (1 - _controller.value)),
                         width: 2,
                       ),
                     ),
                   ),
 
-                // The 3D Sphere Orb in Absa Ruby & Passionate Red
+                // The 3D Sphere Orb in Fintech Emerald & Electric Mint
                 Container(
                   width: currentSize,
                   height: currentSize,
@@ -108,25 +115,25 @@ class _AiShieldOrbState extends State<AiShieldOrb> with SingleTickerProviderStat
                       center: Alignment(-0.25, -0.3),
                       radius: 0.85,
                       colors: [
-                        Color(0xFFFFF0F2), // Specular white-rose core highlight
-                        Color(0xFFFF6B85), // Warm coral-pink
-                        Color(0xFFFF1744), // Vivid Absa neon crimson
-                        Color(0xFFDC0032), // Signature Absa Passion Red
-                        Color(0xFF9E0024), // Rich imperial burgundy mid-tone
-                        Color(0xFF4A0010), // Deep wine rim depth
+                        Color(0xFFE8FFF3), // Specular white-mint core highlight
+                        Color(0xFF69F0AE), // Bright mint glow
+                        Color(0xFF00E676), // Vivid neon emerald
+                        Color(0xFF00C853), // Signature Fintech Green
+                        Color(0xFF0B6623), // Rich pine mid-tone
+                        Color(0xFF042B14), // Deep forest rim depth
                       ],
                       stops: [0.0, 0.22, 0.46, 0.70, 0.88, 1.0],
                     ),
                     boxShadow: [
                       // Inner rim highlight
                       BoxShadow(
-                        color: const Color(0xFFFF4066).withValues(alpha: 0.8),
+                        color: const Color(0xFF00FF88).withValues(alpha: 0.8),
                         blurRadius: 25,
                         spreadRadius: 2,
                       ),
-                      // Soft Absa Red outer glow
+                      // Soft Emerald Green outer glow
                       BoxShadow(
-                        color: const Color(0xFFDC0032).withValues(alpha: 0.55),
+                        color: const Color(0xFF00C853).withValues(alpha: 0.55),
                         blurRadius: 40,
                         spreadRadius: 6,
                       ),

@@ -25,19 +25,7 @@ class WalletOverviewSection extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: isDark
-              ? const [
-                  Color(0xFF8B0B24), // Vibrant Absa Red-Burgundy
-                  Color(0xFF6B091E), // Absa Rich Burgundy
-                  Color(0xFF4A0514), // Deep Wine
-                  Color(0xFF22040B),
-                ]
-              : const [
-                  Color(0xFFDC0032), // Signature Absa Passionate Red
-                  Color(0xFFBA002A),
-                  Color(0xFF980022),
-                  Color(0xFF7A001B),
-                ],
+          colors: AppTheme.headerGradientColors(isDark),
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -52,13 +40,13 @@ class WalletOverviewSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // "AI Shield & Threat Monitor" label
+          // "AI Shield & Threat Monitor" label (matches "В кошельке" style)
           Text(
             'AI Shield & Threat Monitor',
             style: GoogleFonts.inter(
               fontSize: 13,
               fontWeight: FontWeight.w400,
-              color: isDark ? const Color(0xFFDCA5B0) : Colors.white.withValues(alpha: 0.9),
+              color: isDark ? AppTheme.headerTextMuted : Colors.white.withValues(alpha: 0.9),
             ),
           ),
           const SizedBox(height: 8),
@@ -79,9 +67,9 @@ class WalletOverviewSection extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF00FF88).withValues(alpha: 0.15),
+                  color: AppTheme.primaryGreen.withValues(alpha: 0.18),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFF00FF88).withValues(alpha: 0.4)),
+                  border: Border.all(color: AppTheme.primaryGreen.withValues(alpha: 0.5)),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -90,7 +78,7 @@ class WalletOverviewSection extends StatelessWidget {
                       width: 6,
                       height: 6,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF00FF88),
+                        color: AppTheme.primaryGreen,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -100,7 +88,7 @@ class WalletOverviewSection extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFF00FF88),
+                        color: AppTheme.primaryGreen,
                       ),
                     ),
                   ],
@@ -136,9 +124,9 @@ class WalletOverviewSection extends StatelessWidget {
                   children: [
                     _buildSquareActionTile(
                       isDark: isDark,
-                      iconWidget: Icon(
+                      iconWidget: const Icon(
                         Icons.sms_rounded,
-                        color: isDark ? const Color(0xFFE5BFC7) : Colors.white,
+                        color: Colors.white,
                         size: 22,
                       ),
                       onTap: () {
@@ -151,9 +139,9 @@ class WalletOverviewSection extends StatelessWidget {
                     const SizedBox(height: 10),
                     _buildSquareActionTile(
                       isDark: isDark,
-                      iconWidget: Icon(
+                      iconWidget: const Icon(
                         Icons.shield_outlined,
-                        color: isDark ? const Color(0xFFE5BFC7) : Colors.white,
+                        color: Colors.white,
                         size: 22,
                       ),
                       onTap: () {
@@ -168,7 +156,7 @@ class WalletOverviewSection extends StatelessWidget {
 
                 const SizedBox(width: 10),
 
-                // Card 1: Absa Passion Red Card
+                // Card 1: Vibrant Green Card (matches Sber green card in screenshot)
                 _buildBankCard(
                   isDark: isDark,
                   balanceVisible: balanceVisible,
@@ -179,12 +167,12 @@ class WalletOverviewSection extends StatelessWidget {
                         height: 18,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [AppTheme.absaRed, AppTheme.absaCrimson],
+                            colors: [AppTheme.primaryGreen, AppTheme.sberDarkGreen],
                           ),
                           borderRadius: BorderRadius.circular(4),
                           boxShadow: [
                             BoxShadow(
-                              color: AppTheme.absaRed.withValues(alpha: 0.4),
+                              color: AppTheme.primaryGreen.withValues(alpha: 0.4),
                               blurRadius: 6,
                             ),
                           ],
@@ -208,7 +196,7 @@ class WalletOverviewSection extends StatelessWidget {
 
                 const SizedBox(width: 10),
 
-                // Card 2: Absa Platinum Silver Card
+                // Card 2: Platinum Silver Card (matches silver card in screenshot)
                 _buildBankCard(
                   isDark: isDark,
                   balanceVisible: balanceVisible,
@@ -226,7 +214,7 @@ class WalletOverviewSection extends StatelessWidget {
                             width: 6,
                             height: 6,
                             decoration: const BoxDecoration(
-                              color: AppTheme.absaRed,
+                              color: AppTheme.primaryGreen,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -247,7 +235,7 @@ class WalletOverviewSection extends StatelessWidget {
 
                 const SizedBox(width: 10),
 
-                // Card 3: Absa Premier Gold card
+                // Card 3: Premier Gold / MoMo Card
                 _buildBankCard(
                   isDark: isDark,
                   balanceVisible: balanceVisible,
@@ -258,7 +246,7 @@ class WalletOverviewSection extends StatelessWidget {
                         height: 18,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [AppTheme.absaGold, Color(0xFFC78F1A)],
+                            colors: [AppTheme.accentGold, Color(0xFFC78F1A)],
                           ),
                           borderRadius: BorderRadius.circular(4),
                         ),
@@ -296,11 +284,11 @@ class WalletOverviewSection extends StatelessWidget {
       height: 58,
       decoration: BoxDecoration(
         color: isDark
-            ? const Color(0xFF220D16).withValues(alpha: 0.9)
+            ? AppTheme.headerCardBg.withValues(alpha: 0.85)
             : Colors.white.withValues(alpha: 0.22),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDark ? const Color(0xFF3F1724) : Colors.white.withValues(alpha: 0.35),
+          color: isDark ? AppTheme.headerCardBorder : Colors.white.withValues(alpha: 0.35),
           width: 1,
         ),
       ),
@@ -328,10 +316,10 @@ class WalletOverviewSection extends StatelessWidget {
       width: 154,
       height: 154,
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF220D16).withValues(alpha: 0.9) : Colors.white,
+        color: isDark ? AppTheme.headerCardBg : Colors.white,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: isDark ? const Color(0xFF3D1623) : const Color(0xFFE8DFE5),
+          color: isDark ? AppTheme.headerCardBorder : const Color(0xFFE2E8F0),
           width: 1,
         ),
         boxShadow: isDark
@@ -366,7 +354,7 @@ class WalletOverviewSection extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 9.5,
                           fontWeight: FontWeight.w500,
-                          color: isDark ? const Color(0xFFDCA5B0) : AppTheme.textDarkMuted,
+                          color: isDark ? AppTheme.headerTextMuted : AppTheme.textDarkMuted,
                         ),
                       ),
                     ],
@@ -393,7 +381,7 @@ class WalletOverviewSection extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 10.5,
                         fontWeight: FontWeight.w400,
-                        color: isDark ? const Color(0xFFDCA5B0) : AppTheme.textDarkMuted,
+                        color: isDark ? AppTheme.headerTextMuted : AppTheme.textDarkMuted,
                       ),
                     ),
                   ],

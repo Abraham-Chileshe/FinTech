@@ -88,11 +88,11 @@ class SmsInputCard extends StatelessWidget {
             onChanged: onChanged,
             decoration: InputDecoration(
               filled: true,
-              fillColor: isDark ? const Color(0xFF0C090D) : const Color(0xFFFBF8FA),
+              fillColor: isDark ? AppTheme.backgroundDark : const Color(0xFFF2F9F5),
               hintText: 'Paste message text here to analyse...',
               hintStyle: GoogleFonts.inter(
                 fontSize: 13.5,
-                color: isDark ? const Color(0xFF756370) : AppTheme.textDarkSubtle,
+                color: isDark ? AppTheme.textSubtle : AppTheme.textDarkSubtle,
               ),
               contentPadding: const EdgeInsets.all(14),
               border: OutlineInputBorder(
@@ -105,7 +105,7 @@ class SmsInputCard extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: AppTheme.absaRed, width: 1.5),
+                borderSide: const BorderSide(color: AppTheme.primaryGreen, width: 1.5),
               ),
               counterStyle: GoogleFonts.inter(
                 fontSize: 11,
@@ -155,8 +155,8 @@ class SmsAnalyzeActionButton extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
-            Color(0xFFDC0032), // Signature Absa Passionate Red
-            Color(0xFFBA002A),
+            Color(0xFF00E676), // Electric Emerald
+            Color(0xFF00C853), // Signature Fintech Emerald Green
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -164,7 +164,7 @@ class SmsAnalyzeActionButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.absaRed.withValues(alpha: 0.35),
+            color: AppTheme.primaryGreen.withValues(alpha: 0.35),
             blurRadius: 16,
             offset: const Offset(0, 5),
           ),

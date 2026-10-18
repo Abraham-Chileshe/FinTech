@@ -189,11 +189,11 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
           height: 14,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isFilled ? AppTheme.absaRed : const Color(0xFF33202E),
+            color: isFilled ? AppTheme.primaryGreen : const Color(0xFF1E2834),
             boxShadow: isFilled
                 ? [
                     BoxShadow(
-                      color: AppTheme.absaRed.withValues(alpha: 0.6),
+                      color: AppTheme.primaryGreen.withValues(alpha: 0.6),
                       blurRadius: 10,
                       spreadRadius: 2,
                     ),
@@ -235,7 +235,7 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
         height: 58,
         child: IconButton(
           tooltip: 'Biometric Unlock',
-          icon: const Icon(Icons.face_rounded, size: 24, color: AppTheme.absaCoral),
+          icon: const Icon(Icons.face_rounded, size: 24, color: AppTheme.mintAccent),
           onPressed: _simulateBiometricUnlock,
         ),
       );
@@ -247,7 +247,7 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
         height: 58,
         child: IconButton(
           tooltip: 'Delete',
-          icon: const Icon(Icons.backspace_outlined, size: 20, color: Color(0xFFA694A0)),
+          icon: const Icon(Icons.backspace_outlined, size: 20, color: AppTheme.textMuted),
           onPressed: _onDeletePressed,
         ),
       );
@@ -265,7 +265,7 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
         color: Colors.transparent,
         child: InkWell(
           customBorder: const CircleBorder(),
-          splashColor: AppTheme.absaRed.withValues(alpha: 0.2),
+          splashColor: AppTheme.primaryGreen.withValues(alpha: 0.2),
           onTap: () => _onDigitPressed(key),
           child: Center(
             child: Text(

@@ -1,17 +1,31 @@
-# frontend
+# 📱 Munda AI Fraud Shield — Frontend (Flutter)
 
-A new Flutter project.
+Cross-platform client application for **Munda AI Fraud Shield**, built with Flutter.
 
-## Getting Started
+For full project architecture, backend instructions, and API documentation, see the [Root README](../README.md).
 
-This project is a starting point for a Flutter application.
+## Quick Start
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+# 1. Install dependencies
+flutter pub get
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+# 2. Run static analysis
+flutter analyze
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 3. Run automated tests
+flutter test
+
+# 4. Launch in Chrome (Web)
+flutter run -d chrome
+
+# 5. Launch on Mobile (Android / iOS)
+flutter run
+```
+
+## Features
+- **Sber-Inspired FinTech Dark Theme**: Ocean navy header gradient, obsidian dark mode, high-contrast Sber green accents.
+- **AI Shield Orb**: Real-time animated threat monitoring sphere.
+- **Synthetic Attack Scenarios**: One-tap simulation of Zambian financial attack vectors (Airtel Money, MTN MoMo, ZANACO, ABSA).
+- **Interactive Security Assistant**: Gemini AI chatbot with voice and audio guidance.
+- **Local PIN & Biometric Lock**: 4-digit security lock with simulated biometric unlock.

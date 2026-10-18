@@ -25,14 +25,14 @@ class AutoDetectToggleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
           color: isEnabled
-              ? (isDark ? AppTheme.absaRed.withValues(alpha: 0.45) : const Color(0xFFFCA5A5))
+              ? (isDark ? AppTheme.primaryGreen.withValues(alpha: 0.45) : const Color(0xFF86EFAC))
               : cardBorder,
           width: isEnabled ? 1.2 : 1.0,
         ),
         boxShadow: [
           if (isEnabled)
             BoxShadow(
-              color: AppTheme.absaRed.withValues(alpha: isDark ? 0.12 : 0.06),
+              color: AppTheme.primaryGreen.withValues(alpha: isDark ? 0.12 : 0.06),
               blurRadius: 14,
               offset: const Offset(0, 4),
             ),
@@ -53,8 +53,8 @@ class AutoDetectToggleCard extends StatelessWidget {
                   height: 42,
                   decoration: BoxDecoration(
                     color: isEnabled
-                        ? AppTheme.absaRed.withValues(alpha: isDark ? 0.22 : 0.12)
-                        : (isDark ? const Color(0xFF251A22) : const Color(0xFFF1EDF0)),
+                        ? AppTheme.primaryGreen.withValues(alpha: isDark ? 0.22 : 0.12)
+                        : (isDark ? const Color(0xFF132E20) : const Color(0xFFE8F6EF)),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -63,8 +63,8 @@ class AutoDetectToggleCard extends StatelessWidget {
                           ? Icons.radar_rounded
                           : Icons.shield_outlined,
                       color: isEnabled
-                          ? AppTheme.absaRed
-                          : (isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted),
+                          ? AppTheme.primaryGreen
+                          : (isDark ? AppTheme.textMuted : AppTheme.textDarkMuted),
                       size: 22,
                     ),
                   ),
@@ -91,7 +91,7 @@ class AutoDetectToggleCard extends StatelessWidget {
                           fontSize: 12,
                           color: isEnabled
                               ? (isDark ? const Color(0xFF4ADE80) : const Color(0xFF16A34A))
-                              : (isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted),
+                              : (isDark ? AppTheme.textMuted : AppTheme.textDarkMuted),
                           fontWeight: isEnabled ? FontWeight.w500 : FontWeight.w400,
                         ),
                       ),
@@ -101,10 +101,10 @@ class AutoDetectToggleCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Switch.adaptive(
                   value: isEnabled,
-                  activeThumbColor: AppTheme.absaRed,
-                  activeTrackColor: AppTheme.absaRed.withValues(alpha: 0.38),
-                  inactiveThumbColor: isDark ? const Color(0xFF8C7B87) : const Color(0xFFB0A4AD),
-                  inactiveTrackColor: isDark ? const Color(0xFF2E222B) : const Color(0xFFE5DEE3),
+                  activeThumbColor: AppTheme.primaryGreen,
+                  activeTrackColor: AppTheme.primaryGreen.withValues(alpha: 0.38),
+                  inactiveThumbColor: isDark ? AppTheme.textSubtle : AppTheme.textDarkSubtle,
+                  inactiveTrackColor: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
                   onChanged: onToggle,
                 ),
               ],

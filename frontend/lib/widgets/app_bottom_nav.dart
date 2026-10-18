@@ -72,10 +72,10 @@ class AppBottomNav extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF0C090D) : Colors.white,
+        color: isDark ? AppTheme.backgroundDark : Colors.white,
         border: Border(
           top: BorderSide(
-            color: isDark ? const Color(0xFF20131E) : const Color(0xFFEAE2E8),
+            color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
             width: 1,
           ),
         ),
@@ -110,7 +110,7 @@ class AppBottomNav extends StatelessWidget {
               label: 'SMS Fraud',
               isActive: currentIndex == 1,
             ),
-            // Center AI Assistant Swirl / Orb in Absa Red
+            // Center AI Assistant Swirl / Orb in Fintech Emerald Green
             GestureDetector(
               onTap: () => _handleNavigation(context, 2),
               behavior: HitTestBehavior.opaque,
@@ -132,8 +132,8 @@ class AppBottomNav extends StatelessWidget {
                       fontSize: 10,
                       fontWeight: currentIndex == 2 ? FontWeight.w600 : FontWeight.w500,
                       color: currentIndex == 2
-                          ? AppTheme.absaRed
-                          : (isDark ? const Color(0xFF8E8292) : const Color(0xFF75626F)),
+                          ? AppTheme.primaryGreen
+                          : (isDark ? AppTheme.textMuted : AppTheme.textDarkMuted),
                     ),
                   ),
                 ],
@@ -167,8 +167,8 @@ class AppBottomNav extends StatelessWidget {
     required bool isActive,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final activeColor = AppTheme.absaRed;
-    final inactiveColor = isDark ? const Color(0xFF8E8292) : const Color(0xFF75626F);
+    final activeColor = AppTheme.primaryGreen;
+    final inactiveColor = isDark ? AppTheme.textMuted : AppTheme.textDarkMuted;
 
     return GestureDetector(
       onTap: () => _handleNavigation(context, index),

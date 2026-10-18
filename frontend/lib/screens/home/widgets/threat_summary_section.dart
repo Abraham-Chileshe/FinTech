@@ -43,7 +43,7 @@ class ThreatSummarySection extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 13.5,
                   fontWeight: FontWeight.w500,
-                  color: AppTheme.absaCoral,
+                  color: AppTheme.primaryGreen,
                 ),
               ),
             ),
@@ -51,13 +51,13 @@ class ThreatSummarySection extends StatelessWidget {
         ),
         const SizedBox(height: 14),
 
-        // Absa Threat Alert Card: High Risk Incident
+        // Threat Alert Card: Warning Incident (styled like Sber warning banner in screenshot)
         Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF19121A) : Colors.white,
+            color: isDark ? AppTheme.surfaceDark : Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: isDark ? const Color(0xFF2E1C28) : const Color(0xFFE9E0E6),
+              color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
               width: 1,
             ),
             boxShadow: isDark
@@ -86,7 +86,7 @@ class ThreatSummarySection extends StatelessWidget {
                       width: 26,
                       height: 26,
                       decoration: const BoxDecoration(
-                        color: AppTheme.absaCoral,
+                        color: AppTheme.accentOrange,
                         shape: BoxShape.circle,
                       ),
                       child: const Center(
@@ -120,7 +120,7 @@ class ThreatSummarySection extends StatelessWidget {
                             style: GoogleFonts.inter(
                               fontSize: 11.5,
                               fontWeight: FontWeight.w400,
-                              color: isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted,
+                              color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                             ),
                           ),
                         ],
@@ -128,7 +128,7 @@ class ThreatSummarySection extends StatelessWidget {
                     ),
                     Icon(
                       Icons.chevron_right_rounded,
-                      color: isDark ? const Color(0xFF8E7D8A) : AppTheme.textDarkSubtle,
+                      color: isDark ? AppTheme.textSubtle : AppTheme.textDarkSubtle,
                       size: 22,
                     ),
                   ],
@@ -144,10 +144,10 @@ class ThreatSummarySection extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF140F16) : Colors.white,
+            color: isDark ? AppTheme.surfaceDark : Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: isDark ? const Color(0xFF261522) : const Color(0xFFE9E0E6),
+              color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
               width: 1,
             ),
             boxShadow: isDark
@@ -171,22 +171,22 @@ class ThreatSummarySection extends StatelessWidget {
               Container(
                 width: 1,
                 height: 32,
-                color: isDark ? const Color(0xFF2B1826) : const Color(0xFFEAE2E8),
+                color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
               ),
               _buildMetricItem(
                 title: 'Threats Blocked',
                 value: '14',
-                color: AppTheme.absaCoral,
+                color: AppTheme.riskHigh,
               ),
               Container(
                 width: 1,
                 height: 32,
-                color: isDark ? const Color(0xFF2B1826) : const Color(0xFFEAE2E8),
+                color: isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight,
               ),
               _buildMetricItem(
                 title: 'SIM Shield',
                 value: '100% OK',
-                color: const Color(0xFF00C853),
+                color: AppTheme.primaryGreen,
               ),
             ],
           ),
@@ -216,7 +216,7 @@ class ThreatSummarySection extends StatelessWidget {
           style: GoogleFonts.inter(
             fontSize: 10.5,
             fontWeight: FontWeight.w400,
-            color: isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted,
+            color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
           ),
         ),
       ],

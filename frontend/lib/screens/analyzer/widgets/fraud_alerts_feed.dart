@@ -89,19 +89,19 @@ class _FraudAlertsFeedState extends State<FraudAlertsFeed> {
                       }
                     });
                   },
-                  backgroundColor: isDark ? AppTheme.surfaceDark : const Color(0xFFF1EBF0),
-                  selectedColor: AppTheme.absaRed.withValues(alpha: 0.18),
-                  checkmarkColor: AppTheme.absaRed,
+                  backgroundColor: isDark ? AppTheme.surfaceDark : const Color(0xFFE8F6EF),
+                  selectedColor: AppTheme.primaryGreen.withValues(alpha: 0.18),
+                  checkmarkColor: AppTheme.primaryGreen,
                   side: BorderSide(
                     color: isSelected
-                        ? AppTheme.absaRed
+                        ? AppTheme.primaryGreen
                         : (isDark ? AppTheme.surfaceBorder : AppTheme.surfaceBorderLight),
                   ),
                   labelStyle: GoogleFonts.inter(
                     fontSize: 12.5,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                     color: isSelected
-                        ? AppTheme.absaRed
+                        ? AppTheme.primaryGreen
                         : (isDark ? AppTheme.textMuted : AppTheme.textDarkMuted),
                   ),
                 ),
@@ -151,7 +151,7 @@ class _FraudAlertsFeedState extends State<FraudAlertsFeed> {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                             decoration: BoxDecoration(
-                              color: isDark ? const Color(0xFF26121B) : const Color(0xFFF1E6EB),
+                              color: isDark ? const Color(0xFF132E20) : const Color(0xFFE8F6EF),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
@@ -159,7 +159,7 @@ class _FraudAlertsFeedState extends State<FraudAlertsFeed> {
                               style: GoogleFonts.inter(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
-                                color: isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted,
+                                color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                               ),
                             ),
                           ),
@@ -170,7 +170,7 @@ class _FraudAlertsFeedState extends State<FraudAlertsFeed> {
                         duration: const Duration(milliseconds: 200),
                         child: Icon(
                           Icons.keyboard_arrow_down_rounded,
-                          color: isDark ? const Color(0xFFA694A0) : AppTheme.textDarkMuted,
+                          color: isDark ? AppTheme.textMuted : AppTheme.textDarkMuted,
                           size: 22,
                         ),
                       ),

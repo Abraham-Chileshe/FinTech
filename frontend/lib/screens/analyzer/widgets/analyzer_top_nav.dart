@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../theme/app_theme.dart';
 import '../../history_screen.dart';
 
 class AnalyzerFixedTopNav extends StatelessWidget {
@@ -20,7 +21,7 @@ class AnalyzerFixedTopNav extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF8B0B24) : const Color(0xFFDC0032),
+        color: AppTheme.headerNavColor(isDark),
         boxShadow: isScrolled
             ? [
                 BoxShadow(
@@ -101,19 +102,7 @@ class AnalyzerTopBannerSubtitle extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: isDark
-              ? const [
-                  Color(0xFF8B0B24),
-                  Color(0xFF6B091E),
-                  Color(0xFF4A0514),
-                  Color(0xFF22040B),
-                ]
-              : const [
-                  Color(0xFFDC0032),
-                  Color(0xFFBA002A),
-                  Color(0xFF980022),
-                  Color(0xFF7A001B),
-                ],
+          colors: AppTheme.headerGradientColors(isDark),
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),

@@ -142,7 +142,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF8B0B24) : const Color(0xFFDC0032),
+        color: AppTheme.headerNavColor(isDark),
         boxShadow: _isScrolled
             ? [
                 BoxShadow(
@@ -222,17 +222,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: isDark
-              ? const [
-                  Color(0xFF8B0B24),
-                  Color(0xFF6B091E),
-                  Color(0xFF330510),
-                ]
-              : const [
-                  Color(0xFFDC0032),
-                  Color(0xFFBA002A),
-                  Color(0xFF88001E),
-                ],
+          colors: AppTheme.headerGradientColors(isDark),
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -396,16 +386,16 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E0A12) : const Color(0xFFFFF1F3),
+        color: isDark ? const Color(0xFF0E2419) : const Color(0xFFE8F6EF),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isDark ? AppTheme.absaRed.withValues(alpha: 0.3) : const Color(0xFFFECDD3),
+          color: isDark ? AppTheme.primaryGreen.withValues(alpha: 0.3) : const Color(0xFFB8E6CF),
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.tips_and_updates_outlined, color: AppTheme.absaRed, size: 22),
+          const Icon(Icons.tips_and_updates_outlined, color: AppTheme.primaryGreen, size: 22),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -416,7 +406,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: isDark ? AppTheme.absaCoral : AppTheme.absaRed,
+                    color: isDark ? AppTheme.mintAccent : AppTheme.primaryGreen,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -425,7 +415,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   style: GoogleFonts.inter(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
-                    color: isDark ? const Color(0xFFE2D6DE) : const Color(0xFF334155),
+                    color: isDark ? const Color(0xFFD4EDE0) : const Color(0xFF1E3A2B),
                     height: 1.5,
                   ),
                 ),
