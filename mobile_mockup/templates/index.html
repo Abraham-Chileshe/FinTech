@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Munda AI — Mobile Phone SMS Mockup & Fraud Test Harness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-space: #0B0E14;
+      --bg-panel: #131822;
+      --bg-card: #18202F;
+      --border-subtle: #222C3E;
+      --border-highlight: #2D3A52;
+      --accent-green: #22C55E;
+      --accent-mint: #34D399;
+      --accent-red: #EF4444;
+      --accent-amber: #F59E0B;
+      --accent-blue: #38BDF8;
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --phone-width: 380px;
+      --phone-height: 780px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-space);
+      background-image: 
+        radial-gradient(circle at 25% 15%, rgba(6, 62, 102, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(34, 197, 94, 0.12) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* TOP NAVBAR */
+    header {
+      background: rgba(19, 24, 34, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #22C55E, #047857);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.4);
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #fff;
+    }
+
+    .brand-subtitle {
+      font-size: 11.5px;
+      color: var(--accent-mint);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .server-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(24, 32, 47, 0.8);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* MAIN TWO-COLUMN WORKSPACE */
+    .workspace {
+      display: flex;
+      flex: 1;
+      padding: 24px;
+      gap: 32px;
+      max-width: 1540px;
+      margin: 0 auto;
+      width: 100%;
+      align-items: flex-start;
+    }
+
+    /* LEFT: PHONE CONTAINER */
+    .phone-container {
+      flex: 0 0 var(--phone-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: sticky;
+      top: 90px;
+    }
+
+    /* REALISTIC IPHONE BODY */
+    .smartphone {
+      width: var(--phone-width);
+      height: var(--phone-height);
+      background: #000;
+      border-radius: 54px;
+      box-shadow: 
+        0 0 0 3px #333a46,
+        0 0 0 8px #1b2029,
+        0 24px 60px rgba(0, 0, 0, 0.75),
+        0 0 100px rgba(6, 62, 102, 0.35);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 3px solid #1f2530;
+    }
+
+    /* DYNAMIC ISLAND */
+    .dynamic-island {
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.08);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .island-lens {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #111e2e;
+      border: 1px solid #1f364d;
+    }
+
+    .island-sensor {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #0a111a;
+    }
+
+    /* STATUS BAR */
+    .phone-status-bar {
+      padding: 16px 26px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      z-index: 40;
+    }
+
+    .status-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    /* PHONE INNER SCREEN */
+    .phone-screen {
+      flex: 1;
+      background: #0F1318;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* INCOMING SMS POPUP BANNER */
+    .incoming-sms-banner {
+      position: absolute;
+      top: -140px;
+      left: 14px;
+      right: 14px;
+      background: rgba(28, 34, 45, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 14px 16px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      z-index: 80;
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      cursor: pointer;
+    }
+
+    .incoming-sms-banner.active {
+      transform: translateY(154px);
+    }
+
+    .banner-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .banner-app-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      background: #22C55E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .banner-app-name {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .banner-time {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .banner-sender {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .banner-preview {
+      font-size: 12px;
+      color: #CBD5E1;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* MUNDA SHIELD HUD / INTERCEPTION MODAL */
+    .threat-hud {
+      position: absolute;
+      bottom: -460px;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, #181E29 0%, #0F1319 100%);
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      padding: 20px;
+      box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.8), 0 -1px 0 rgba(255, 255, 255, 0.1);
+      z-index: 90;
+      transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+      display: flex;
+      flex-direction: column;
+      max-height: 82%;
+      overflow-y: auto;
+    }
+
+    .threat-hud.active {
+      transform: translateY(-460px);
+    }
+
+    .hud-handle {
+      width: 36px;
+      height: 4px;
+      background: #334155;
+      border-radius: 2px;
+      margin: 0 auto 16px;
+    }
+
+    .hud-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .hud-risk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .pill-high {
+      background: rgba(239, 68, 68, 0.18);
+      color: #EF4444;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .pill-suspicious {
+      background: rgba(245, 158, 11, 0.18);
+      color: #F59E0B;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .pill-safe {
+      background: rgba(34, 197, 94, 0.18);
+      color: #22C55E;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+
+    .hud-score-ring {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .hud-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .hud-summary {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .hud-signals-list {
+      background: rgba(11, 14, 20, 0.6);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .signal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 11.5px;
+      color: #CBD5E1;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .signal-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .signal-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #EF4444;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .hud-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-hud-block {
+      background: #EF4444;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-hud-block:hover {
+      background: #DC2626;
+    }
+
+    .btn-hud-dismiss {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      padding: 10px;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* MESSAGES APP SCREEN */
+    .messages-app {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 16px 16px;
+      overflow-y: auto;
+    }
+
+    .chat-top-header {
+      text-align: center;
+      padding: 8px 0 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 16px;
+    }
+
+    .chat-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1E3A5F, #0D223A);
+      border: 1px solid #2B5784;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      margin: 0 auto 6px;
+      color: #60A5FA;
+      font-weight: bold;
+    }
+
+    .chat-contact-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .chat-contact-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .conversation-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .sms-bubble-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 90%;
+      animation: bubblePop 0.35s ease;
+    }
+
+    @keyframes bubblePop {
+      0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .sms-bubble {
+      background: #242C38;
+      border-radius: 18px;
+      border-bottom-left-radius: 4px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #F1F5F9;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .sms-bubble.intercepted {
+      border: 1.5px solid #EF4444;
+      background: rgba(36, 44, 56, 0.95);
+    }
+
+    .sms-shield-tag {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-danger {
+      color: #EF4444;
+    }
+
+    .tag-safe {
+      color: #22C55E;
+    }
+
+    .sms-time {
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-top: 4px;
+      margin-left: 4px;
+    }
+
+    /* RIGHT: SENDER & AUTOMATION PANEL */
+    .control-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .sender-presets {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .chip-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--accent-mint);
+      color: #fff;
+      background: rgba(52, 211, 153, 0.1);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .custom-input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .custom-input:focus {
+      border-color: var(--accent-green);
+    }
+
+    /* MOCKUP TEXTAREA */
+    .mockup-textarea {
+      width: 100%;
+      height: 120px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .mockup-textarea:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+    }
+
+    .textarea-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .btn-send {
+      flex: 2;
+      background: linear-gradient(135deg, #22C55E 0%, #15803D 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 18px rgba(34, 197, 94, 0.35);
+      transition: all 0.2s;
+    }
+
+    .btn-send:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(34, 197, 94, 0.5);
+    }
+
+    .btn-send:active {
+      transform: translateY(1px);
+    }
+
+    .btn-random {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-random:hover {
+      border-color: var(--border-highlight);
+      color: #fff;
+      background: #1E283A;
+    }
+
+    /* SCENARIO PRESETS GRID */
+    .presets-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .preset-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .preset-card:hover {
+      border-color: #38BDF8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .preset-badge {
+      display: inline-flex;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 2px;
+    }
+
+    .badge-high { color: #EF4444; }
+    .badge-low { color: #22C55E; }
+
+    .preset-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .preset-desc {
+      font-size: 11.5px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* AUTOMATION / STREAM MODE */
+    .automation-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(14, 20, 30, 0.7);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .automation-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .automation-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .automation-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #334155;
+      transition: .3s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent-green);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* JSON TELEMETRY VIEWER */
+    .telemetry-viewer {
+      background: #090C12;
+      border-radius: 12px;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: #CBD5E1;
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      line-height: 1.45;
+    }
+
+    .json-key { color: #38BDF8; }
+    .json-string { color: #A7F3D0; }
+    .json-number { color: #FBBF24; }
+    .json-boolean { color: #F472B6; }
+
+    @media (max-width: 1024px) {
+      .workspace {
+        flex-direction: column;
+        align-items: center;
+      }
+      .phone-container {
+        position: relative;
+        top: 0;
+      }
+      .control-panel {
+        width: 100%;
+        max-width: 680px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🛡️</div>
+      <div>
+        <div class="brand-title">Munda AI — Mobile SMS Mockup</div>
+        <div class="brand-subtitle">Automated Fraud Detection Test Harness</div>
+      </div>
+    </div>
+    <div class="server-status" id="serverStatusPill">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Checking Backend API...</span>
+    </div>
+  </header>
+
+  <!-- WORKSPACE -->
+  <div class="workspace">
+
+    <!-- LEFT: MOBILE SMARTPHONE MOCKUP -->
+    <div class="phone-container">
+      <div class="smartphone">
+        <!-- DYNAMIC ISLAND -->
+        <div class="dynamic-island" id="dynamicIsland">
+          <div class="island-lens"></div>
+          <div class="island-sensor"></div>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="phone-status-bar">
+          <span id="phoneClock">9:41</span>
+          <div class="status-icons">
+            <span>5G</span>
+            <span>📶</span>
+            <span>100% 🔋</span>
+          </div>
+        </div>
+
+        <!-- INCOMING SMS NOTIFICATION BANNER (Drops down on new SMS) -->
+        <div class="incoming-sms-banner" id="incomingBanner" onclick="openThreatHud()">
+          <div class="banner-header">
+            <div class="banner-app-icon">💬</div>
+            <span class="banner-app-name">Messages • Now</span>
+            <span class="banner-time" id="bannerTime">Just now</span>
+          </div>
+          <div class="banner-sender" id="bannerSender">AirtelMoney</div>
+          <div class="banner-preview" id="bannerPreview">You have received ZMW 650.00...</div>
+        </div>
+
+        <!-- PHONE SCREEN CONTENT -->
+        <div class="phone-screen">
+          <div class="messages-app">
+            <div class="chat-top-header">
+              <div class="chat-avatar" id="chatAvatar">📱</div>
+              <div class="chat-contact-name" id="chatContactName">Munda SMS Inbox</div>
+              <div class="chat-contact-sub" id="chatContactSub">AI Real-Time Threat Protection Active</div>
+            </div>
+
+            <div class="conversation-thread" id="conversationThread">
+              <!-- Initial Welcome message -->
+              <div class="sms-bubble-wrapper">
+                <div class="sms-bubble">
+                  <div class="sms-shield-tag tag-safe">🛡️ Munda AI Guard Active</div>
+                  Welcome to Munda AI Mobile Simulator. Type a message in the console on the right or pick a threat scenario to test automatic fraud detection.
+                </div>
+                <span class="sms-time">9:40 AM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MUNDA SHIELD INTERCEPTION HUD (Slides up on analysis) -->
+          <div class="threat-hud" id="threatHud">
+            <div class="hud-handle"></div>
+            
+            <div class="hud-badge-row">
+              <div class="hud-risk-pill pill-high" id="hudRiskPill">🚨 HIGH RISK ALERT</div>
+              <div class="hud-score-ring" id="hudScoreRing" style="color: #EF4444;">94% Risk</div>
+            </div>
+
+            <div class="hud-title" id="hudTitle">MoMo Reversal Scam Detected</div>
+            <div class="hud-summary" id="hudSummary">
+              High-pressure coercive demand detected. Genuine mobile money transfers cannot be reversed to arbitrary numbers.
+            </div>
+
+            <div class="hud-signals-list" id="hudSignalsList">
+              <div class="signal-item">
+                <div class="signal-dot"></div>
+                <span>Urgency tactics used to induce panic.</span>
+              </div>
+            </div>
+
+            <div class="hud-actions">
+              <button class="btn-hud-block" onclick="dismissHud('blocked')">
+                🚫 Block Sender & Isolate Message
+              </button>
+              <button class="btn-hud-dismiss" onclick="dismissHud('dismiss')">
+                Dismiss Warning
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: AUTOMATION & SENDER CONSOLE -->
+    <div class="control-panel">
+
+      <!-- CARD 1: SMS TRANSMITTER CONSOLE -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>✉️</span> SMS Transmitter & Threat Injector
+          </div>
+          <span style="font-size: 12px; color: var(--text-dim);" id="apiLatency">Latency: --</span>
+        </div>
+
+        <div class="field-label">
+          <span>Sender Identifier / Header</span>
+          <span style="color: var(--accent-mint); font-weight: normal;">Simulates SMS Origin</span>
+        </div>
+
+        <!-- Quick Sender Presets -->
+        <div class="sender-presets">
+          <button class="chip-btn" onclick="setSender('AirtelMoney')">AirtelMoney</button>
+          <button class="chip-btn" onclick="setSender('MTN_MoMo')">MTN_MoMo</button>
+          <button class="chip-btn" onclick="setSender('ZANACO')">ZANACO</button>
+          <button class="chip-btn" onclick="setSender('ABSA-Alerts')">ABSA-Alerts</button>
+          <button class="chip-btn" onclick="setSender('ZRA_Tax')">ZRA_Tax</button>
+          <button class="chip-btn" onclick="setSender('+260971998877')">+260 971 998877</button>
+        </div>
+
+        <div class="input-row">
+          <input type="text" class="custom-input" id="senderInput" value="AirtelMoney" placeholder="Sender name or phone number...">
+        </div>
+
+        <div class="field-label">
+          <span>SMS Body (Mockup Textarea)</span>
+          <span id="charCount">0 characters</span>
+        </div>
+
+        <textarea 
+          class="mockup-textarea" 
+          id="smsTextarea" 
+          placeholder="Paste or type any financial SMS message here to test real-time interception on the mobile phone..."
+          oninput="updateCharCount()"
+          onkeydown="handleKeydown(event)"
+        ></textarea>
+
+        <div class="textarea-footer">
+          <span>Press <kbd style="background: #202836; padding: 2px 6px; border-radius: 4px; color: #fff;">Ctrl + Enter</kbd> to send instantly</span>
+          <button style="background: none; border: none; color: var(--accent-blue); cursor: pointer; font-size: 11.5px;" onclick="clearTextarea()">Clear text</button>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-send" id="btnSend" onclick="sendCustomSms()">
+            <span>🚀</span> Send SMS to Phone
+          </button>
+          <button class="btn-random" onclick="loadRandomScenario()">
+            <span>⚡</span> Random Threat
+          </button>
+        </div>
+
+        <!-- AUTOMATED INJECTION STREAM TOGGLE -->
+        <div class="automation-bar">
+          <div class="automation-info">
+            <span class="automation-title">Automated Continuous SMS Stream</span>
+            <span class="automation-sub">Automatically injects realistic scam and genuine messages every 8s</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="streamToggle" onchange="toggleAutomationStream()">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- CARD 2: REAL-WORLD ZAMBIAN FINTECH SCENARIOS -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>🎯</span> Curated Zambian Threat & Receipt Presets
+          </div>
+          <span style="font-size: 12px; color: var(--text-dim);">One-Click Test Payloads</span>
+        </div>
+
+        <div class="presets-grid" id="presetsContainer">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </div>
+
+      <!-- CARD 3: LIVE BACKEND API TELEMETRY -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>📡</span> Live API Telemetry & Payload Inspector
+          </div>
+          <button style="background: none; border: none; color: var(--accent-blue); cursor: pointer; font-size: 11.5px;" onclick="copyJson()">Copy JSON</button>
+        </div>
+
+        <div class="telemetry-viewer" id="telemetryViewer">
+// Waiting for first SMS transmission...
+// Payloads sent to http://127.0.0.1:8000/api/v1/analyze-sms will be displayed here in real time.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let presetsData = [];
+    let currentAnalysis = null;
+    let streamInterval = null;
+    let bannerTimeout = null;
+
+    // Simple Audio Chime using Web Audio API
+    function playSmsChime(isThreat) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (isThreat) {
+          // Warning descending dual-tone
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(580, now);
+          osc.frequency.exponentialRampToValueAtTime(320, now + 0.25);
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else {
+          // Cheerful SMS bell chime
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(784, now);
+          osc.frequency.setValueAtTime(1046, now + 0.12);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        }
+      } catch (e) {
+        console.log("Audio not supported or blocked by browser.");
+      }
+    }
+
+    // Initialize Page
+    window.addEventListener("DOMContentLoaded", () => {
+      updatePhoneClock();
+      setInterval(updatePhoneClock, 30000);
+      checkBackendHealth();
+      setInterval(checkBackendHealth, 15000);
+      fetchPresets();
+    });
+
+    function updatePhoneClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      document.getElementById('phoneClock').innerText = `${hours}:${minutes}`;
+    }
+
+    // Check Backend API Health
+    async function checkBackendHealth() {
+      const statusPill = document.getElementById('serverStatusPill');
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+
+      try {
+        const res = await fetch('/api/health-check');
+        const data = await res.json();
+        if (data.backend_online) {
+          statusDot.style.background = '#22C55E';
+          statusDot.style.boxShadow = '0 0 8px #22C55E';
+          statusText.innerText = `Laravel API Online (${data.latency_ms}ms)`;
+        } else {
+          statusDot.style.background = '#F59E0B';
+          statusDot.style.boxShadow = '0 0 8px #F59E0B';
+          statusText.innerText = `Offline Fallback Rules Mode`;
+        }
+      } catch (e) {
+        statusDot.style.background = '#EF4444';
+        statusText.innerText = `Simulator Local Mode`;
+      }
+    }
+
+    // Fetch Curated Presets
+    async function fetchPresets() {
+      try {
+        const res = await fetch('/api/presets');
+        const data = await res.json();
+        presetsData = data.presets || [];
+        renderPresets(presetsData);
+
+        // Preload first scenario into textarea
+        if (presetsData.length > 0) {
+          loadScenario(presetsData[0]);
+        }
+      } catch (e) {
+        console.error("Failed to load presets", e);
+      }
+    }
+
+    function renderPresets(list) {
+      const container = document.getElementById('presetsContainer');
+      container.innerHTML = '';
+
+      list.forEach((item, index) => {
+        const isHigh = item.severity === 'high';
+        const card = document.createElement('div');
+        card.className = 'preset-card';
+        card.onclick = () => loadScenario(item);
+
+        card.innerHTML = `
+          <div class="preset-badge ${isHigh ? 'badge-high' : 'badge-low'}">
+            ${isHigh ? '🚨 ATTACK' : '✅ SAFE'} • ${item.sender}
+          </div>
+          <div class="preset-title">${item.title}</div>
+          <div class="preset-desc">${item.category}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function setSender(sender) {
+      document.getElementById('senderInput').value = sender;
+    }
+
+    function loadScenario(scenario) {
+      document.getElementById('senderInput').value = scenario.sender;
+      document.getElementById('smsTextarea').value = scenario.text;
+      updateCharCount();
+    }
+
+    function loadRandomScenario() {
+      if (presetsData.length === 0) return;
+      const rand = presetsData[Math.floor(Math.random() * presetsData.length)];
+      loadScenario(rand);
+      sendCustomSms();
+    }
+
+    function clearTextarea() {
+      document.getElementById('smsTextarea').value = '';
+      updateCharCount();
+      document.getElementById('smsTextarea').focus();
+    }
+
+    function updateCharCount() {
+      const text = document.getElementById('smsTextarea').value;
+      document.getElementById('charCount').innerText = `${text.length} characters`;
+    }
+
+    function handleKeydown(e) {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        sendCustomSms();
+      }
+    }
+
+    // TRANSMIT SMS TO PHONE
+    async function sendCustomSms() {
+      const sender = document.getElementById('senderInput').value.trim() || 'Unknown';
+      const message = document.getElementById('smsTextarea').value.trim();
+
+      if (!message) {
+        alert("Please enter message text in the textarea.");
+        return;
+      }
+
+      const btn = document.getElementById('btnSend');
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      try {
+        const t0 = performance.now();
+        const res = await fetch('/api/send-sms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sender, message })
+        });
+        const data = await res.json();
+        const latency = Math.round(performance.now() - t0);
+
+        document.getElementById('apiLatency').innerText = `Latency: ${latency}ms`;
+
+        // Update JSON Inspector
+        displayTelemetry(data);
+
+        // Deliver SMS to phone
+        deliverSmsToDevice(data);
+      } catch (e) {
+        alert("Failed to communicate with simulator backend: " + e.message);
+      } finally {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    }
+
+    // DELIVER SMS AND TRIGGER PHONE ANIMATIONS
+    function deliverSmsToDevice(data) {
+      const analysis = data.analysis || {};
+      const riskBand = (analysis.risk_band || 'low').toLowerCase();
+      const isHigh = riskBand === 'high';
+      const isSuspicious = riskBand === 'suspicious';
+      const isThreat = isHigh || isSuspicious;
+
+      // Play audio chime
+      playSmsChime(isThreat);
+
+      // 1. Expand Dynamic Island briefly
+      const island = document.getElementById('dynamicIsland');
+      island.style.width = '140px';
+      island.style.background = isThreat ? '#EF4444' : '#22C55E';
+      setTimeout(() => {
+        island.style.width = '110px';
+        island.style.background = '#000';
+      }, 700);
+
+      // 2. Animate Incoming Push Banner
+      const banner = document.getElementById('incomingBanner');
+      document.getElementById('bannerSender').innerText = data.sender;
+      document.getElementById('bannerPreview').innerText = data.message;
+      document.getElementById('bannerTime').innerText = 'Just now';
+
+      clearTimeout(bannerTimeout);
+      banner.classList.add('active');
+
+      bannerTimeout = setTimeout(() => {
+        banner.classList.remove('active');
+      }, 4500);
+
+      // 3. Add Message bubble into thread
+      addMessageToThread(data, riskBand);
+
+      // 4. Trigger Munda Shield Threat Interception HUD if threat
+      currentAnalysis = analysis;
+      currentAnalysis.sender = data.sender;
+      currentAnalysis.message = data.message;
+
+      setTimeout(() => {
+        displayThreatHud(analysis, data.sender);
+      }, 600);
+    }
+
+    function addMessageToThread(data, riskBand) {
+      const thread = document.getElementById('conversationThread');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'sms-bubble-wrapper';
+
+      const isThreat = riskBand === 'high' || riskBand === 'suspicious';
+      const tagClass = isThreat ? 'tag-danger' : 'tag-safe';
+      const tagText = isThreat ? '🚨 FRAUD INTERCEPTED' : '🛡️ VERIFIED SAFE';
+
+      wrapper.innerHTML = `
+        <div class="sms-bubble ${isThreat ? 'intercepted' : ''}">
+          <div class="sms-shield-tag ${tagClass}">
+            ${tagText} • ${data.sender}
+          </div>
+          ${escapeHtml(data.message)}
+        </div>
+        <span class="sms-time">${data.timestamp || 'Now'}</span>
+      `;
+
+      thread.appendChild(wrapper);
+
+      // Auto scroll to bottom
+      const appScreen = document.querySelector('.messages-app');
+      appScreen.scrollTop = appScreen.scrollHeight;
+    }
+
+    function displayThreatHud(analysis, sender) {
+      const hud = document.getElementById('threatHud');
+      const pill = document.getElementById('hudRiskPill');
+      const scoreRing = document.getElementById('hudScoreRing');
+      const title = document.getElementById('hudTitle');
+      const summary = document.getElementById('hudSummary');
+      const signalsList = document.getElementById('hudSignalsList');
+
+      const riskBand = (analysis.risk_band || 'low').toLowerCase();
+      const score = analysis.risk_score || 0;
+
+      if (riskBand === 'high') {
+        pill.className = 'hud-risk-pill pill-high';
+        pill.innerText = '🚨 HIGH RISK THREAT';
+        scoreRing.style.color = '#EF4444';
+      } else if (riskBand === 'suspicious') {
+        pill.className = 'hud-risk-pill pill-suspicious';
+        pill.innerText = '⚠️ SUSPICIOUS PATTERN';
+        scoreRing.style.color = '#F59E0B';
+      } else {
+        pill.className = 'hud-risk-pill pill-safe';
+        pill.innerText = '✅ VERIFIED SAFE';
+        scoreRing.style.color = '#22C55E';
+      }
+
+      scoreRing.innerText = `${score}% Risk`;
+      title.innerText = analysis.threat_category || (riskBand === 'high' ? 'Predatory Scam Detected' : 'Security Assessment');
+      summary.innerText = analysis.summary || 'Real-time threat evaluation completed by Munda AI hybrid engine.';
+
+      // Populate signals list
+      signalsList.innerHTML = '';
+      const reasons = analysis.reasons || [];
+      if (reasons.length > 0) {
+        reasons.slice(0, 3).forEach(reason => {
+          const item = document.createElement('div');
+          item.className = 'signal-item';
+          item.innerHTML = `
+            <div class="signal-dot" style="background: ${riskBand === 'low' ? '#22C55E' : '#EF4444'}"></div>
+            <span>${escapeHtml(reason)}</span>
+          `;
+          signalsList.appendChild(item);
+        });
+      } else {
+        signalsList.innerHTML = '<div class="signal-item"><span>No security triggers detected.</span></div>';
+      }
+
+      hud.classList.add('active');
+    }
+
+    function openThreatHud() {
+      if (currentAnalysis) {
+        displayThreatHud(currentAnalysis, currentAnalysis.sender);
+      }
+    }
+
+    function dismissHud(action) {
+      const hud = document.getElementById('threatHud');
+      hud.classList.remove('active');
+
+      if (action === 'blocked') {
+        setTimeout(() => {
+          alert("✓ Sender has been quarantined and blocked from Munda AI security firewall.");
+        }, 300);
+      }
+    }
+
+    // AUTOMATION STREAM
+    function toggleAutomationStream() {
+      const isChecked = document.getElementById('streamToggle').checked;
+      if (isChecked) {
+        // Fire one immediately, then repeat every 8 seconds
+        loadRandomScenario();
+        streamInterval = setInterval(() => {
+          loadRandomScenario();
+        }, 8000);
+      } else {
+        clearInterval(streamInterval);
+      }
+    }
+
+    // TELEMETRY JSON FORMATTER
+    function displayTelemetry(data) {
+      const viewer = document.getElementById('telemetryViewer');
+      const formatted = syntaxHighlight(JSON.stringify(data, null, 2));
+      viewer.innerHTML = formatted;
+    }
+
+    function syntaxHighlight(json) {
+      json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        let cls = 'json-number';
+        if (/^"/.test(match)) {
+          if (/:$/.test(match)) {
+            cls = 'json-key';
+          } else {
+            cls = 'json-string';
+          }
+        } else if (/true|false/.test(match)) {
+          cls = 'json-boolean';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+      });
+    }
+
+    function copyJson() {
+      const viewer = document.getElementById('telemetryViewer');
+      navigator.clipboard.writeText(viewer.innerText).then(() => {
+        alert("Payload JSON copied to clipboard!");
+      });
+    }
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+  </script>
+</body>
+</html>

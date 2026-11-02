@@ -97,6 +97,12 @@ finTech/
 │   │   └── widgets/               # AiShieldOrb, AppBottomNav, HomeTopNav, etc.
 │   └── test/                      # Flutter widget & unit test suites
 │
+├── mobile_mockup/                 # Visual Mobile Phone SMS Mockup & Automation Harness
+│   ├── app.py                     # Python Flask API & proxy server (Port 5050)
+│   ├── templates/index.html       # Interactive smartphone simulator & sender console
+│   ├── run_simulator.bat          # 1-click launcher for Windows
+│   └── README.md                  # Simulator guide & automation docs
+│
 └── README.md                      # Project documentation
 ```
 
